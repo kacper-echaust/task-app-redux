@@ -1,3 +1,5 @@
 const App = () => {
-  return (<)
+	return <></>
 }
+
+export { App }
