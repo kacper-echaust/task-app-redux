@@ -10,9 +10,12 @@ const todosSlice = createSlice({
 		addTodo: (state, action: PayloadAction<SingleTodo>) => {
 			state.push(action.payload)
 		},
+		deleteTodo: (state, action: PayloadAction<string>) => {
+			return state.filter(todo => todo.id !== action.payload)
+		},
 	},
 })
 
-export const { addTodo } = todosSlice.actions
+export const { addTodo, deleteTodo } = todosSlice.actions
 
 export default todosSlice.reducer
