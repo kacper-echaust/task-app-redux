@@ -8,6 +8,9 @@ const todosSlice = createSlice({
 	initialState,
 	reducers: {
 		addTodo: (state, action: PayloadAction<SingleTodo>) => {
+			if(!action.payload){
+				throw new Error('Todo cannot be empty')
+			}
 			state.push(action.payload)
 		},
 		deleteTodo: (state, action: PayloadAction<string>) => {
@@ -18,6 +21,8 @@ const todosSlice = createSlice({
 			const todoToEdit = state.find(todo => todo.id === id)
 			if (todoToEdit) {
 				todoToEdit.title = title
+			}else {
+				throw new Error('Todo not found')
 			}
 		},
 		toggleDoneTodo: (state, action: PayloadAction<{ id: string }>) => {
