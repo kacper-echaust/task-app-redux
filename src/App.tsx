@@ -1,5 +1,11 @@
+import { TodoForm } from './components/Todos/TodoForm'
+
 const App = () => {
-	return <></>
+	return (
+		<div className='flex justify-center items-center '>
+			<TodoForm />
+		</div>
+	)
 }
 
 export { App }
