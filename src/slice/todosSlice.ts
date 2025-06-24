@@ -8,7 +8,7 @@ const todosSlice = createSlice({
 	initialState,
 	reducers: {
 		addTodo: (state, action: PayloadAction<SingleTodo>) => {
-			if(!action.payload){
+			if (!action.payload) {
 				throw new Error('Todo cannot be empty')
 			}
 			state.push(action.payload)
@@ -21,7 +21,7 @@ const todosSlice = createSlice({
 			const todoToEdit = state.find(todo => todo.id === id)
 			if (todoToEdit) {
 				todoToEdit.title = title
-			}else {
+			} else {
 				throw new Error('Todo not found')
 			}
 		},
