@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { SingleTodo, Todos } from '../types'
+import { SingleTodoType, Todos } from '../types'
 
 const initialState: Todos = []
 
@@ -7,7 +7,7 @@ const todosSlice = createSlice({
 	name: 'todos',
 	initialState,
 	reducers: {
-		addTodo: (state, action: PayloadAction<SingleTodo>) => {
+		addTodo: (state, action: PayloadAction<SingleTodoType>) => {
 			if (!action.payload) {
 				throw new Error('Todo cannot be empty')
 			}
