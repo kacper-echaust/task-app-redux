@@ -1,7 +1,6 @@
-export type Todos = SingleTodo[]
+export type Todos = SingleTodoType[]
 
-
-export type SingleTodo = {
+export type SingleTodoType = {
 	id: string
 	title: string
 	date: number
