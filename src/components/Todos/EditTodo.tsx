@@ -1,8 +1,8 @@
-import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { CardContent, CardHeader, CardAction } from '../ui/card'
 import { useState } from 'react'
-import { Error } from './Error'
+import { TodoInput } from './TodoInput'
+import { useValidateTodo } from '@/hooks/useValidateTodo'
 
 type EditTodoProps = {
 	prevTitle: string
@@ -14,19 +14,17 @@ const EditTodo = ({ prevTitle, onCancel, onConfirm }: EditTodoProps) => {
 	const [editValue, setEditValue] = useState<string>(prevTitle)
 	const [error, setError] = useState<string>('')
 	const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+	const { validateTodo } = useValidateTodo()
 
 	const handleConfirm = () => {
 		const trimmedValue = editValue.trim()
+		const errorMsg = validateTodo(editValue)
+		if (errorMsg) {
+			setError(errorMsg)
+			return
+		}
 		if (prevTitle === trimmedValue) {
 			setError('Todo have the same value')
-			return
-		}
-		if (!trimmedValue) {
-			setError('Todo can not be empty')
-			return
-		}
-		if (trimmedValue.length > 50) {
-			setError('Todo can not be longer than 50 characters')
 			return
 		}
 		setError('')
@@ -37,12 +35,12 @@ const EditTodo = ({ prevTitle, onCancel, onConfirm }: EditTodoProps) => {
 	return (
 		<CardContent className='absolute z-10 bg-white w-full h-full px-6'>
 			<CardHeader className='w-full'>
-				<Input
-					className={`${error ? 'border-red-500 focus:ring-red-400' : ''}`}
+				<TodoInput
+					error={error}
 					value={editValue}
 					onChange={e => setEditValue(e.target.value)}
+					placeholder='Rename todo'
 				/>
-				{error && <Error text={error} />}
 			</CardHeader>
 			<CardAction className='flex gap-2'>
 				<Button onClick={handleConfirm} disabled={isSubmitting}>
