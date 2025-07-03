@@ -20,12 +20,21 @@ const TodoForm = () => {
 		e.preventDefault()
 		const newId = crypto.randomUUID()
 		const errorMsg = validateTodo(value)
+
 		if (errorMsg) {
 			setError(errorMsg)
 			return
 		}
 
-		dispatch(addTodo({ title: value, isDone: false, date: Date.now(), id: newId.toString() }))
+		const todoToAdd = { title: value, isDone: false, date: Date.now(), id: newId.toString() }
+		const storedTodos = localStorage.getItem('todos')
+		const todos = storedTodos ? JSON.parse(storedTodos) : []
+
+		const updatedTodos = [...todos, todoToAdd]
+
+		localStorage.setItem('todos', JSON.stringify(updatedTodos))
+
+		dispatch(addTodo(todoToAdd))
 		setValue('')
 		setError('')
 	}

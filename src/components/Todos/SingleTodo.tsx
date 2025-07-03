@@ -6,6 +6,7 @@ import { deleteTodo, editTodo, toggleDoneTodo } from '@/slice/todosSlice'
 import { useState } from 'react'
 import { EditTodo } from './EditTodo'
 import { ConfirmDeleteTodo } from './ConfirmDeleteTodo'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 
 const SingleTodo = ({ todo }: { todo: SingleTodoType }) => {
 	const [isEdit, setIsEdit] = useState<boolean>(false)
@@ -15,9 +16,11 @@ const SingleTodo = ({ todo }: { todo: SingleTodoType }) => {
 		todo.isDone ? 'opacity-70 bg-muted/50 text-gray-500 ' : 'bg-white'
 	}`
 	const formattedDate = new Date(todo.date).toLocaleString('pl-PL')
+	const { editStoredData, deleteStoredData } = useLocalStorage<SingleTodoType>('todos')
 
 	const handleDone = () => {
 		dispatch(toggleDoneTodo({ id: todo.id }))
+		editStoredData(!todo.isDone, 'isDone', todo.id)
 	}
 	const handleDelete = () => {
 		setIsConfirmDeleteOpen(true)
@@ -28,6 +31,7 @@ const SingleTodo = ({ todo }: { todo: SingleTodoType }) => {
 	const handleConfirmDelete = () => {
 		setIsConfirmDeleteOpen(false)
 		dispatch(deleteTodo(todo.id))
+		deleteStoredData(todo.id)
 	}
 	const handleEdit = () => {
 		setIsEdit(true)
@@ -38,6 +42,7 @@ const SingleTodo = ({ todo }: { todo: SingleTodoType }) => {
 	const handleConfirmEdit = (title: string) => {
 		setIsEdit(false)
 		dispatch(editTodo({ id: todo.id, title }))
+		editStoredData(title, 'title', todo.id)
 	}
 	return (
 		<Card className={cardClass}>
