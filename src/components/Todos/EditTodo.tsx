@@ -18,7 +18,7 @@ const EditTodo = ({ prevTitle, onCancel, onConfirm }: EditTodoProps) => {
 
 	const handleConfirm = () => {
 		const trimmedValue = editValue.trim()
-		const errorMsg = validateTodo(editValue)
+		const errorMsg = validateTodo(trimmedValue)
 		if (errorMsg) {
 			setError(errorMsg)
 			return
@@ -29,7 +29,7 @@ const EditTodo = ({ prevTitle, onCancel, onConfirm }: EditTodoProps) => {
 		}
 		setError('')
 		setIsSubmitting(true)
-		onConfirm(editValue)
+		onConfirm(trimmedValue)
 	}
 
 	return (

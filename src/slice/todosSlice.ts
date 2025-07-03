@@ -31,9 +31,12 @@ const todosSlice = createSlice({
 				completedTodo.isDone = !completedTodo.isDone
 			}
 		},
+		initTodos: (_, action: PayloadAction<Todos>) => {
+			return action.payload
+		},
 	},
 })
 
-export const { addTodo, deleteTodo, editTodo, toggleDoneTodo } = todosSlice.actions
+export const { addTodo, deleteTodo, editTodo, toggleDoneTodo, initTodos } = todosSlice.actions
 
 export default todosSlice.reducer
