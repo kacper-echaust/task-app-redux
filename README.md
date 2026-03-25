@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
+ # 📝 Task App Redux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Prosta aplikacja do zarządzania zadaniami (TODO), zbudowana w **React + TypeScript** i oparta na **Redux** do zarządzania stanem. Umożliwia dodawanie, edytowanie, usuwanie oraz oznaczanie zadań jako ukończone. Dane są zapisywane w **localStorage**, dzięki czemu lista zadań pozostaje po odświeżeniu strony.
 
-Currently, two official plugins are available:
+## 🚀 Funkcjonalności
+- ➕ Dodawanie nowych zadań  
+- ✏️ Edytowanie istniejących zadań  
+- ❌ Usuwanie zadań  
+- ✅ Oznaczanie zadań jako ukończone  
+- 💾 Zapisywanie stanu w localStorage  
+- 🧹 Walidacja danych wejściowych  
+- 🎨 UI oparte na TailwindCSS + shadcn/ui  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠️ Technologie
+- React  
+- Redux Toolkit  
+- TypeScript  
+- Vite  
+- TailwindCSS  
+- shadcn/ui  
+- ESLint  
 
-## Expanding the ESLint configuration
+## ▶️ Live Demo
+https://kacper-echaust.github.io/task-app-redux/
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## 📦 Instalacja i uruchomienie
+```bash
+npm install
+npm run dev
